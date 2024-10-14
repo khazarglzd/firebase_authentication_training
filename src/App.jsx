@@ -1,8 +1,13 @@
 import './App.css'
+import Navbar from './components/Navbar'
+import RouterConfig from "./config/RouterConfig"
 
 const App = () => {
   return (
-    <div>App</div>
+    <div>
+      <Navbar />
+      <RouterConfig />
+    </div>
   )
 }
 
