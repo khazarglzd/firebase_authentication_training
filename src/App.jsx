@@ -4,7 +4,7 @@ import RouterConfig from "./config/RouterConfig"
 
 const App = () => {
   return (
-    <div>
+    <div className='container' >
       <Navbar />
       <RouterConfig />
     </div>
