@@ -10,9 +10,10 @@ const Auth = () => {
                 <input type="text" placeholder='Add email address...' />
                 <input type="password" placeholder='Add password...' />
             </div>
-            <div >
-                <button className='sign-in-btn'>SIGN IN</button>
-                <button className='sign-up-btn'>SIGN UP</button>
+            <div className='auth-btn-div' >
+                <button className='sign-in-btn'>Sign In</button>
+                <button className='sign-up-btn'>Sign Up</button>
+                <button className='sign-in-google-btn'>Sign in with Google </button>
             </div>
         </div>
     )

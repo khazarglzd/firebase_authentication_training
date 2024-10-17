@@ -35,31 +35,48 @@ input {
   margin: 10px 0px;
 }
 
+.auth-btn-div {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
 .sign-in-btn {
-  width: 145px;
-  height: 30px;
-  padding: 5px 15px;
+  width: 290px;
+  height: 35px;
   border: none;
   border-radius: 5px;
   background-color: #dc2c01;
   color: white;
-  margin-right: 5px;
   cursor: pointer;
+  margin-top: 10px;
 }
 .sign-up-btn {
-  width: 145px;
-  height: 30px;
-  padding: 5px 15px;
+  width: 290px;
+  height: 35px;
   border: none;
   border-radius: 5px;
   background-color: #ffc303;
   color: white;
   cursor: pointer;
+  margin-top: 10px;
+}
+
+.sign-in-google-btn {
+  width: 290px;
+  height: 35px;
+  border: none;
+  border-radius: 5px;
+  background-color: #000000;
+  color: white;
+  cursor: pointer;
+  margin-top: 10px;
 }
 
 button:hover {
-  width: 150px;
-  height: 35px;
+  width: 300px;
+  height: 40px;
   font-size: 16px;
   transition: 0.3s;
 }
