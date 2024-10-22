@@ -1,8 +1,9 @@
 import React, { useState } from 'react'
-import { createUserWithEmailAndPassword } from "firebase/auth";
+import { createUserWithEmailAndPassword, signInWithEmailAndPassword } from "firebase/auth";
 import "../css/Auth.css"
 import { toast } from 'react-toastify';
 import { auth } from '../Firebase';
+import { useNavigate } from 'react-router-dom';
 
 
 const Auth = () => {
@@ -10,10 +11,13 @@ const Auth = () => {
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
 
+    const navigate = useNavigate()
+
     const signUp = async () => {
         try {
             const response = await createUserWithEmailAndPassword(auth, email, password)
             const user = response.user
+
             if (user) {
                 toast.success("The user created")
                 setEmail('')
@@ -26,6 +30,22 @@ const Auth = () => {
 
     }
 
+    const signIn = async () => {
+        try {
+            const response = await signInWithEmailAndPassword(auth, email, password)
+            const user = response.user
+            if (user) {
+                navigate("/")
+            }
+        }
+        catch (error) {
+            toast.error("Sign In process failed" + error.message)
+        };
+
+    }
+
+
+
     return (
         <div className='auth'>
             <h3 className='auth-header'>Sign In / Sign Up</h3>
@@ -34,7 +54,7 @@ const Auth = () => {
                 <input type="password" value={password} onChange={(e) => { setPassword(e.target.value) }} placeholder='Add password...' />
             </div>
             <div className='auth-btn-div' >
-                <button className='sign-in-btn'>Sign In</button>
+                <button className='sign-in-btn' onClick={signIn} >Sign In</button>
                 <button className='sign-up-btn' onClick={signUp} >Sign Up</button>
                 <button className='sign-in-google-btn'>Sign in with Google </button>
             </div>
