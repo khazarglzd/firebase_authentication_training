@@ -1,9 +1,11 @@
 import React, { useState } from 'react'
-import { createUserWithEmailAndPassword, signInWithEmailAndPassword } from "firebase/auth";
+import { createUserWithEmailAndPassword, signInWithEmailAndPassword, GoogleAuthProvider, signInWithPopup } from "firebase/auth";
 import "../css/Auth.css"
 import { toast } from 'react-toastify';
 import { auth } from '../Firebase';
 import { useNavigate } from 'react-router-dom';
+
+const provider = new GoogleAuthProvider();
 
 
 const Auth = () => {
@@ -12,6 +14,22 @@ const Auth = () => {
     const [password, setPassword] = useState('')
 
     const navigate = useNavigate()
+
+    const signInWithGoogle = async () => {
+        try {
+            const response = await signInWithPopup(auth, provider)
+            // const credential = GoogleAuthProvider.credentialFromResult(response);
+            // const token = credential.accessToken;
+            const user = response.user
+            if (user) {
+                navigate("/home")
+            }
+        }
+        catch (error) {
+            toast.error(error.message)
+        }
+
+    }
 
     const signUp = async () => {
         try {
@@ -22,6 +40,7 @@ const Auth = () => {
                 toast.success("The user created")
                 setEmail('')
                 setPassword("")
+                navigate("/home")
             }
         }
         catch (error) {
@@ -35,7 +54,7 @@ const Auth = () => {
             const response = await signInWithEmailAndPassword(auth, email, password)
             const user = response.user
             if (user) {
-                navigate("/")
+                navigate("/home")
             }
         }
         catch (error) {
@@ -56,7 +75,7 @@ const Auth = () => {
             <div className='auth-btn-div' >
                 <button className='sign-in-btn' onClick={signIn} >Sign In</button>
                 <button className='sign-up-btn' onClick={signUp} >Sign Up</button>
-                <button className='sign-in-google-btn'>Sign in with Google </button>
+                <button className='sign-in-google-btn' onClick={signInWithGoogle}   >Sign in with Google </button>
             </div>
         </div>
     )

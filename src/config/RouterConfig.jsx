@@ -5,8 +5,8 @@ import Home from '../pages/Home'
 const RouterConfig = () => {
     return (
         <Routes>
-            <Route exact path='/' element={<Home />} />
-            <Route exact path='/auth' element={<Auth />} />
+            <Route exact path='/' element={<Auth />} />
+            <Route exact path='/home' element={<Home />} />
         </Routes>
     )
 }

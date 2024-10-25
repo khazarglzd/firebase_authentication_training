@@ -13,7 +13,7 @@ const Navbar = () => {
         toast.success("Logging Out");
         setTimeout(() => {
             signOut(auth)
-            navigate("/auth")
+            navigate("/")
         }, 2000);
     }
 
